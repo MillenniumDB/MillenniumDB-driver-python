@@ -1,0 +1,8 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "millenniumdb_driver"
+authors = [{name = "Vicente Calisto", email = "vecalisto@uc.cl"},{name = "Matías Maldonado", email = "matiasmaldonado@uc.cl"}]
+dynamic = ["version", "description", "requires-python", "dependencies", "classifiers", "urls"]

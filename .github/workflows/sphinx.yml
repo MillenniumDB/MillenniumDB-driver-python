@@ -1,0 +1,37 @@
+name: Deploy Documentation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install sphinx
+        run: pip install -r docs/requirements.txt
+
+      - name: Generate index.rst
+        run: python docs/generate.py
+
+      - name: Generate sphinx documentation
+        run: sphinx-build -b html docs/ docs/_build/
+
+      - name: Copy files for deployment
+        run: |
+          mkdir -p docs/_build/temp
+          cp docs/_build/index.html docs/_build/temp/
+          cp -r docs/_build/_static docs/_build/temp/_static
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/temp
+
+      - name: check
+        run: du .

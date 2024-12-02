@@ -1,0 +1,7 @@
+prune src/millenniumdb_driver.egg-info/
+exclude src/millenniumdb_driver.egg-info/SOURCES.txt
+include setup.cfg
+include README.md
+include pyproject.toml
+include MANIFEST.in
+include LICENSE
