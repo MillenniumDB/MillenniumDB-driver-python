@@ -1,4 +1,4 @@
-name: Wheel builder (Test PyiPI)
+name: Wheel builder
 
 on:
   workflow_dispatch:
