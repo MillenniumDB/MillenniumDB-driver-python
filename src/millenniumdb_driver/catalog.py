@@ -30,6 +30,7 @@ class Catalog:
         self._response_handler = response_handler
         self._model_id = None
         self._version = None
+        self._metadata = None
         self._catalog()
 
     @property
@@ -46,6 +47,13 @@ class Catalog:
         """
         return self._version
 
+    @property
+    def metadata(self) -> dict:
+        """
+        :return: The metadata of the catalog.
+        """
+        return self._metadata
+
     def _catalog(self):
         """
         Set the model ID and version of the server
@@ -55,6 +63,7 @@ class Catalog:
         def on_success(summary) -> None:
             self._model_id = summary["modelId"]
             self._version = summary["version"]
+            self._metadata = summary["metadata"]
 
         def on_error(error) -> None:
             raise error

@@ -1,7 +1,7 @@
-from .driver import Driver as _Driver
-from .millenniumdb_error import MillenniumDBError, ResultError
 import importlib.metadata
 
+from .driver import Driver as _Driver
+from .millenniumdb_error import MillenniumDBError, ResultError
 
 __version__ = importlib.metadata.version("millenniumdb_driver")
 
