@@ -48,21 +48,21 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.chunk_decoder">Chunk Decoder Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.record">Record Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.millenniumdb_error">Millenniumdb Error Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.graph_objects">Graph Objects Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.session">Session Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.iobuffer">Iobuffer Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.message_decoder">Message Decoder Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.socket_connection">Socket Connection Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.millenniumdb_error">Millenniumdb Error Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.driver">Driver Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.message_decoder">Message Decoder Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.catalog">Catalog Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.chunk_decoder">Chunk Decoder Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.message_receiver">Message Receiver Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.protocol">Protocol Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.result">Result Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.request_builder">Request Builder Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.catalog">Catalog Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.session">Session Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.result">Result Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.response_handler">Response Handler Module</a></li>
+<li><a class="reference internal" href="#module-millenniumdb_driver.record">Record Module</a></li>
 </ul>
 </div>
         </div>
@@ -161,169 +161,6 @@
 <p>Iterates over each record in result.</p>
 </section>
 </section>
-</section>
-<section id="module-millenniumdb_driver.chunk_decoder">
-<span id="chunk-decoder-module"></span><h1>Chunk Decoder Module<a class="headerlink" href="#module-millenniumdb_driver.chunk_decoder" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.chunk_decoder.</span></span><span class="sig-name descname"><span class="pre">ChunkDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Decode the incoming chunks from the server.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.SEAL">
-<span class="sig-name descname"><span class="pre">SEAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.SEAL" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.__init__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>connection</strong> (<a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><em>SocketConnection</em></a>) – The socket connection.</p></li>
-<li><p><strong>iobuffer</strong> (<a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><em>IOBuffer</em></a>) – The IOBuffer.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.decode" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize the decoding loop until the SEAL is received.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-millenniumdb_driver.record">
-<span id="record-module"></span><h1>Record Module<a class="headerlink" href="#module-millenniumdb_driver.record" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.record.</span></span><span class="sig-name descname"><span class="pre">Record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variableToIndex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This class represents an entry in the result of a query.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variableToIndex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.__init__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of variables in the record.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.__iter__">
-<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.__iter__" title="Permalink to this definition"></a></dt>
-<dd><p>Iterate over all values. Equivalent to record.values().</p>
-<dl class="field-list simple">
-<dt class="field-odd">Yield</dt>
-<dd class="field-odd"><p>an iterable over all values.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.__repr__">
-<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.__repr__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A detailed representation of the Record.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.entries">
-<span class="sig-name descname"><span class="pre">entries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#millenniumdb_driver.record.Record.entries" title="Permalink to this definition"></a></dt>
-<dd><p>Iterate over all entries (key, value).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>an iterable over all entries.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.get" title="Permalink to this definition"></a></dt>
-<dd><p>Get the value associated with the key in the record.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> – The variable name or its index.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The value associated with the key.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.has">
-<span class="sig-name descname"><span class="pre">has</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.record.Record.has" title="Permalink to this definition"></a></dt>
-<dd><p>Check if the record has a value associated with the key.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> – The variable name or its index.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True if the record has a value associated with the key.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.to_dict">
-<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.to_dict" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A dictionary representation of the record.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.values">
-<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#millenniumdb_driver.record.Record.values" title="Permalink to this definition"></a></dt>
-<dd><p>Iterate over all values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>an iterable over all values.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-millenniumdb_driver.millenniumdb_error">
-<span id="millenniumdb-error-module"></span><h1>Millenniumdb Error Module<a class="headerlink" href="#module-millenniumdb_driver.millenniumdb_error" title="Permalink to this heading"></a></h1>
-<dl class="py exception">
-<dt class="sig sig-object py" id="millenniumdb_driver.millenniumdb_error.MillenniumDBError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.millenniumdb_error.</span></span><span class="sig-name descname"><span class="pre">MillenniumDBError</span></span><a class="headerlink" href="#millenniumdb_driver.millenniumdb_error.MillenniumDBError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
-<p>This class represents an error that has been thrown by the driver</p>
-</dd></dl>
-
-<dl class="py exception">
-<dt class="sig sig-object py" id="millenniumdb_driver.millenniumdb_error.ResultError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.millenniumdb_error.</span></span><span class="sig-name descname"><span class="pre">ResultError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><span class="pre">Result</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.millenniumdb_error.ResultError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#millenniumdb_driver.millenniumdb_error.MillenniumDBError" title="millenniumdb_driver.millenniumdb_error.MillenniumDBError"><code class="xref py py-class docutils literal notranslate"><span class="pre">MillenniumDBError</span></code></a></p>
-<p>This specific error is thrown when an error occurs while processing a result
-in order to be able to consume the results obtained so far</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables</dt>
-<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><em>Result</em></a>) – The result object that was being processed</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.millenniumdb_error.ResultError.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><span class="pre">Result</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.millenniumdb_error.ResultError.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="module-millenniumdb_driver.graph_objects">
 <span id="graph-objects-module"></span><h1>Graph Objects Module<a class="headerlink" href="#module-millenniumdb_driver.graph_objects" title="Permalink to this heading"></a></h1>
@@ -668,44 +505,6 @@ type (object): The type of the segment</p>
 </dd></dl>
 
 </section>
-<section id="module-millenniumdb_driver.session">
-<span id="session-module"></span><h1>Session Module<a class="headerlink" href="#module-millenniumdb_driver.session" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.session.Session">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.session.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.driver.Driver" title="millenniumdb_driver.driver.Driver"><span class="pre">Driver</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>The class represents a session with the MillenniumDB server.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.driver.Driver" title="millenniumdb_driver.driver.Driver"><span class="pre">Driver</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.catalog">
-<span class="sig-name descname"><span class="pre">catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session.catalog" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The catalog of the server.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session.close" title="Permalink to this definition"></a></dt>
-<dd><p>Close the session.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.session.Session.run" title="Permalink to this definition"></a></dt>
-<dd><p>Run a query on the server.
-:return: The result of the query.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-millenniumdb_driver.iobuffer">
 <span id="iobuffer-module"></span><h1>Iobuffer Module<a class="headerlink" href="#module-millenniumdb_driver.iobuffer" title="Permalink to this heading"></a></h1>
 <dl class="py class">
@@ -882,31 +681,6 @@ type (object): The type of the segment</p>
 </dd></dl>
 
 </section>
-<section id="module-millenniumdb_driver.message_decoder">
-<span id="message-decoder-module"></span><h1>Message Decoder Module<a class="headerlink" href="#module-millenniumdb_driver.message_decoder" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.message_decoder.MessageDecoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.message_decoder.</span></span><span class="sig-name descname"><span class="pre">MessageDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.message_decoder.MessageDecoder" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Represents the decoder of the incoming messages.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.message_decoder.MessageDecoder.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.message_decoder.MessageDecoder.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>attributes:
-_iobuffer (IOBuffer): The IOBuffer of the incoming</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.message_decoder.MessageDecoder.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.message_decoder.MessageDecoder.decode" title="Permalink to this definition"></a></dt>
-<dd><p>Decode the incoming message, matching the type of
-the data with the protocol.DataType enum and returning
-the decoded data.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-millenniumdb_driver.socket_connection">
 <span id="socket-connection-module"></span><h1>Socket Connection Module<a class="headerlink" href="#module-millenniumdb_driver.socket_connection" title="Permalink to this heading"></a></h1>
 <dl class="py class">
@@ -937,6 +711,34 @@ the decoded data.</p>
 <span class="sig-name descname"><span class="pre">sendall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.socket_connection.SocketConnection.sendall" title="Permalink to this definition"></a></dt>
 <dd><p>Send the data to the server.</p>
 </dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-millenniumdb_driver.millenniumdb_error">
+<span id="millenniumdb-error-module"></span><h1>Millenniumdb Error Module<a class="headerlink" href="#module-millenniumdb_driver.millenniumdb_error" title="Permalink to this heading"></a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="millenniumdb_driver.millenniumdb_error.MillenniumDBError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.millenniumdb_error.</span></span><span class="sig-name descname"><span class="pre">MillenniumDBError</span></span><a class="headerlink" href="#millenniumdb_driver.millenniumdb_error.MillenniumDBError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>This class represents an error that has been thrown by the driver</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="millenniumdb_driver.millenniumdb_error.ResultError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.millenniumdb_error.</span></span><span class="sig-name descname"><span class="pre">ResultError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><span class="pre">Result</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.millenniumdb_error.ResultError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#millenniumdb_driver.millenniumdb_error.MillenniumDBError" title="millenniumdb_driver.millenniumdb_error.MillenniumDBError"><code class="xref py py-class docutils literal notranslate"><span class="pre">MillenniumDBError</span></code></a></p>
+<p>This specific error is thrown when an error occurs while processing a result
+in order to be able to consume the results obtained so far</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><em>Result</em></a>) – The result object that was being processed</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.millenniumdb_error.ResultError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><span class="pre">Result</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.millenniumdb_error.ResultError.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -999,6 +801,129 @@ queries and receiving results from the MillenniumDB server.</p>
 </dd></dl>
 
 </section>
+<section id="module-millenniumdb_driver.message_decoder">
+<span id="message-decoder-module"></span><h1>Message Decoder Module<a class="headerlink" href="#module-millenniumdb_driver.message_decoder" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="millenniumdb_driver.message_decoder.MessageDecoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.message_decoder.</span></span><span class="sig-name descname"><span class="pre">MessageDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.message_decoder.MessageDecoder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represents the decoder of the incoming messages.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.message_decoder.MessageDecoder.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.message_decoder.MessageDecoder.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>attributes:
+_iobuffer (IOBuffer): The IOBuffer of the incoming</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.message_decoder.MessageDecoder.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.message_decoder.MessageDecoder.decode" title="Permalink to this definition"></a></dt>
+<dd><p>Decode the incoming message, matching the type of
+the data with the protocol.DataType enum and returning
+the decoded data.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-millenniumdb_driver.catalog">
+<span id="catalog-module"></span><h1>Catalog Module<a class="headerlink" href="#module-millenniumdb_driver.catalog" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.catalog.</span></span><span class="sig-name descname"><span class="pre">Catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_receiver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.message_receiver.MessageReceiver" title="millenniumdb_driver.message_receiver.MessageReceiver"><span class="pre">MessageReceiver</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.response_handler.ResponseHandler" title="millenniumdb_driver.response_handler.ResponseHandler"><span class="pre">ResponseHandler</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class represents the catalog of the MillenniumDB server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_receiver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.message_receiver.MessageReceiver" title="millenniumdb_driver.message_receiver.MessageReceiver"><span class="pre">MessageReceiver</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.response_handler.ResponseHandler" title="millenniumdb_driver.response_handler.ResponseHandler"><span class="pre">ResponseHandler</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><em>SocketConnection</em></a>) – The socket connection.</p></li>
+<li><p><strong>message_receiver</strong> (<a class="reference internal" href="#millenniumdb_driver.message_receiver.MessageReceiver" title="millenniumdb_driver.message_receiver.MessageReceiver"><em>MessageReceiver</em></a>) – The receiver of incoming messages.</p></li>
+<li><p><strong>response_handler</strong> (<a class="reference internal" href="#millenniumdb_driver.response_handler.ResponseHandler" title="millenniumdb_driver.response_handler.ResponseHandler"><em>ResponseHandler</em></a>) – The handler of the responses.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.__repr__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string representation of the Catalog object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><span class="pre">dict</span></a></em><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.metadata" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The metadata of the catalog.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.model_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.model_id" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The model ID of the server.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.version" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The version of the server.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-millenniumdb_driver.chunk_decoder">
+<span id="chunk-decoder-module"></span><h1>Chunk Decoder Module<a class="headerlink" href="#module-millenniumdb_driver.chunk_decoder" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.chunk_decoder.</span></span><span class="sig-name descname"><span class="pre">ChunkDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Decode the incoming chunks from the server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.SEAL">
+<span class="sig-name descname"><span class="pre">SEAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.SEAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><em>SocketConnection</em></a>) – The socket connection.</p></li>
+<li><p><strong>iobuffer</strong> (<a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><em>IOBuffer</em></a>) – The IOBuffer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.decode" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the decoding loop until the SEAL is received.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-millenniumdb_driver.message_receiver">
 <span id="message-receiver-module"></span><h1>Message Receiver Module<a class="headerlink" href="#module-millenniumdb_driver.message_receiver" title="Permalink to this heading"></a></h1>
 <dl class="py class">
@@ -1050,9 +975,8 @@ queries and receiving results from the MillenniumDB server.</p>
 <span id="protocol-module"></span><h1>Protocol Module<a class="headerlink" href="#module-millenniumdb_driver.protocol" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.DataType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">DataType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.DataType" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">DataType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.DataType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></a></p>
-<p>An enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.DataType.ANON">
 <span class="sig-name descname"><span class="pre">ANON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17</span></em><a class="headerlink" href="#millenniumdb_driver.protocol.DataType.ANON" title="Permalink to this definition"></a></dt>
@@ -1182,9 +1106,8 @@ queries and receiving results from the MillenniumDB server.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.ModelId">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">ModelId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.ModelId" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">ModelId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.ModelId" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></a></p>
-<p>An enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.ModelId.QUAD_MODEL_ID">
 <span class="sig-name descname"><span class="pre">QUAD_MODEL_ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#millenniumdb_driver.protocol.ModelId.QUAD_MODEL_ID" title="Permalink to this definition"></a></dt>
@@ -1204,9 +1127,8 @@ queries and receiving results from the MillenniumDB server.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.RequestType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">RequestType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.RequestType" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">RequestType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.RequestType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></a></p>
-<p>An enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.RequestType.AUTH">
 <span class="sig-name descname"><span class="pre">AUTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#millenniumdb_driver.protocol.RequestType.AUTH" title="Permalink to this definition"></a></dt>
@@ -1241,9 +1163,8 @@ queries and receiving results from the MillenniumDB server.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.ResponseType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">ResponseType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.ResponseType" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.protocol.</span></span><span class="sig-name descname"><span class="pre">ResponseType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.protocol.ResponseType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></a></p>
-<p>An enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.ResponseType.ERROR">
 <span class="sig-name descname"><span class="pre">ERROR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#millenniumdb_driver.protocol.ResponseType.ERROR" title="Permalink to this definition"></a></dt>
@@ -1268,6 +1189,109 @@ queries and receiving results from the MillenniumDB server.</p>
 <dt class="sig sig-object py" id="millenniumdb_driver.protocol.ResponseType.VARIABLES">
 <span class="sig-name descname"><span class="pre">VARIABLES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#millenniumdb_driver.protocol.ResponseType.VARIABLES" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-millenniumdb_driver.request_builder">
+<span id="request-builder-module"></span><h1>Request Builder Module<a class="headerlink" href="#module-millenniumdb_driver.request_builder" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.request_builder.</span></span><span class="sig-name descname"><span class="pre">RequestBuilder</span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class is for build requests.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.cancel">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancellation_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.cancel" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a request to cancel a query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>worker_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The index of the worker.</p></li>
+<li><p><strong>cancellation_token</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The cancellation token.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The IOBuffer of the request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.catalog">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.catalog" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a request to get the catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The IOBuffer of the request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.encode_string">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encode_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.13)"><span class="pre">bytes</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.encode_string" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The string to encode.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The encoded string in bytes using utf-8.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.run">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.run" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a request to execute a query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The query string to execute.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The IOBuffer of the request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-millenniumdb_driver.session">
+<span id="session-module"></span><h1>Session Module<a class="headerlink" href="#module-millenniumdb_driver.session" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="millenniumdb_driver.session.Session">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.session.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.driver.Driver" title="millenniumdb_driver.driver.Driver"><span class="pre">Driver</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The class represents a session with the MillenniumDB server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.driver.Driver" title="millenniumdb_driver.driver.Driver"><span class="pre">Driver</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.catalog">
+<span class="sig-name descname"><span class="pre">catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session.catalog" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The catalog of the server.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.session.Session.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the session.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.session.Session.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.result.Result" title="millenniumdb_driver.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.session.Session.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run a query on the server.
+:return: The result of the query.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1357,135 +1381,6 @@ queries and receiving results from the MillenniumDB server.</p>
 </dd></dl>
 
 </section>
-<section id="module-millenniumdb_driver.request_builder">
-<span id="request-builder-module"></span><h1>Request Builder Module<a class="headerlink" href="#module-millenniumdb_driver.request_builder" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.request_builder.</span></span><span class="sig-name descname"><span class="pre">RequestBuilder</span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This class is for build requests.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.cancel">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancellation_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.cancel" title="Permalink to this definition"></a></dt>
-<dd><p>Builds a request to cancel a query.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>worker_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The index of the worker.</p></li>
-<li><p><strong>cancellation_token</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The cancellation token.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The IOBuffer of the request.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.catalog">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.catalog" title="Permalink to this definition"></a></dt>
-<dd><p>Builds a request to get the catalog.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The IOBuffer of the request.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.encode_string">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encode_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.13)"><span class="pre">bytes</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.encode_string" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The string to encode.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The encoded string in bytes using utf-8.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.request_builder.RequestBuilder.run">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.request_builder.RequestBuilder.run" title="Permalink to this definition"></a></dt>
-<dd><p>Builds a request to execute a query.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The query string to execute.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The IOBuffer of the request.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-millenniumdb_driver.catalog">
-<span id="catalog-module"></span><h1>Catalog Module<a class="headerlink" href="#module-millenniumdb_driver.catalog" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.catalog.</span></span><span class="sig-name descname"><span class="pre">Catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_receiver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.message_receiver.MessageReceiver" title="millenniumdb_driver.message_receiver.MessageReceiver"><span class="pre">MessageReceiver</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.response_handler.ResponseHandler" title="millenniumdb_driver.response_handler.ResponseHandler"><span class="pre">ResponseHandler</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This class represents the catalog of the MillenniumDB server.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_receiver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.message_receiver.MessageReceiver" title="millenniumdb_driver.message_receiver.MessageReceiver"><span class="pre">MessageReceiver</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.response_handler.ResponseHandler" title="millenniumdb_driver.response_handler.ResponseHandler"><span class="pre">ResponseHandler</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.__init__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>connection</strong> (<a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><em>SocketConnection</em></a>) – The socket connection.</p></li>
-<li><p><strong>message_receiver</strong> (<a class="reference internal" href="#millenniumdb_driver.message_receiver.MessageReceiver" title="millenniumdb_driver.message_receiver.MessageReceiver"><em>MessageReceiver</em></a>) – The receiver of incoming messages.</p></li>
-<li><p><strong>response_handler</strong> (<a class="reference internal" href="#millenniumdb_driver.response_handler.ResponseHandler" title="millenniumdb_driver.response_handler.ResponseHandler"><em>ResponseHandler</em></a>) – The handler of the responses.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.__repr__">
-<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.__repr__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A string representation of the Catalog object.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.metadata">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><span class="pre">dict</span></a></em><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.metadata" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The metadata of the catalog.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.model_id">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.model_id" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The model ID of the server.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="millenniumdb_driver.catalog.Catalog.version">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#millenniumdb_driver.catalog.Catalog.version" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The version of the server.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-millenniumdb_driver.response_handler">
 <span id="response-handler-module"></span><h1>Response Handler Module<a class="headerlink" href="#module-millenniumdb_driver.response_handler" title="Permalink to this heading"></a></h1>
 <dl class="py class">
@@ -1516,6 +1411,107 @@ queries and receiving results from the MillenniumDB server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>message</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><em>object</em></a><em>]</em>) – The incoming message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-millenniumdb_driver.record">
+<span id="record-module"></span><h1>Record Module<a class="headerlink" href="#module-millenniumdb_driver.record" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.record.</span></span><span class="sig-name descname"><span class="pre">Record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variableToIndex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class represents an entry in the result of a query.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variableToIndex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of variables in the record.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.__iter__" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate over all values. Equivalent to record.values().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yield</dt>
+<dd class="field-odd"><p>an iterable over all values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.__repr__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A detailed representation of the Record.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.entries">
+<span class="sig-name descname"><span class="pre">entries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#millenniumdb_driver.record.Record.entries" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate over all entries (key, value).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an iterable over all entries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get the value associated with the key in the record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – The variable name or its index.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value associated with the key.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.has">
+<span class="sig-name descname"><span class="pre">has</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.record.Record.has" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the record has a value associated with the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – The variable name or its index.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the record has a value associated with the key.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.record.Record.to_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary representation of the record.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="millenniumdb_driver.record.Record.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#millenniumdb_driver.record.Record.values" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate over all values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an iterable over all values.</p>
 </dd>
 </dl>
 </dd></dl>
