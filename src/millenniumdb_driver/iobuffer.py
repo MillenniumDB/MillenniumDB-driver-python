@@ -31,7 +31,11 @@ class IOBuffer:
         """
         Extend the buffer by num_bytes.
         """
-        self._buffer += bytearray(num_bytes)
+        old_size = len(self._buffer)
+        new_size = old_size + num_bytes
+        new_buffer = bytearray(new_size)
+        new_buffer[:old_size] = self._buffer
+        self._buffer = new_buffer
         self.view = memoryview(self._buffer)
 
     def reset(self) -> None:
