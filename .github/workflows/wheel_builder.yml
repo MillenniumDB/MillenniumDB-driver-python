@@ -20,6 +20,10 @@ jobs:
           cd .. # Can't import millenniumdb_driver within millenniumdb_driver's src directory
           python -c "import millenniumdb_driver, sys; print(millenniumdb_driver.__version__); sys.exit(0)"
 
+      - name: Update packaging (twine error)
+        run: |
+          pip install -U packaging
+          
       - name: Check README rendering for PyPI
         run: |
           python -m pip install twine
