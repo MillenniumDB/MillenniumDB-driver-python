@@ -1,9 +1,28 @@
+[project]
+name = "millenniumdb_driver"
+version = "1.0.2" # ⚠️ Remove "dynamic" if version is static
+authors = [
+    { name = "Vicente Calisto", email = "vecalisto@uc.cl" },
+    { name = "Matías Maldonado", email = "matiasmaldonado@uc.cl" },
+]
+description = "The official MillenniumDB driver for Python"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = ["pandas"]
+
+[project.urls]
+Homepage = "https://github.com/MillenniumDB/MillenniumDB-driver-python"
+"Bug Tracker" = "https://github.com/MillenniumDB/MillenniumDB-driver-python/issues"
+
+
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
-
-[project]
-name = "millenniumdb_driver"
-authors = [{name = "Vicente Calisto", email = "vecalisto@uc.cl"},{name = "Matías Maldonado", email = "matiasmaldonado@uc.cl"}]
-dynamic = ["version", "description", "requires-python", "dependencies", "classifiers", "urls", "readme"]
-license-files = ["LICENSE"]
