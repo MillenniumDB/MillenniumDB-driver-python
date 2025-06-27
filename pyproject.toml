@@ -1,6 +1,6 @@
 [project]
 name = "millenniumdb_driver"
-version = "1.0.2" # ⚠️ Remove "dynamic" if version is static
+version = "1.0.3"
 authors = [
     { name = "Vicente Calisto", email = "vecalisto@uc.cl" },
     { name = "Matías Maldonado", email = "matiasmaldonado@uc.cl" },

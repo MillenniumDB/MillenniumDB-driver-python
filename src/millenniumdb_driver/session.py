@@ -51,7 +51,7 @@ class Session:
         )
 
     @_ensure_session_open
-    def catalog(self):
+    def catalog(self) -> Catalog:
         """
         :return: The catalog of the server.
         """

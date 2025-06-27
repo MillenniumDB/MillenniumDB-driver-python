@@ -5,6 +5,7 @@ from . import protocol
 from .graph_objects import (
     IRI,
     DateTime,
+    Direction,
     GraphAnon,
     GraphEdge,
     GraphNode,
@@ -16,7 +17,6 @@ from .graph_objects import (
     Time,
 )
 from .iobuffer import IOBuffer
-from .millenniumdb_error import MillenniumDBError
 
 
 class MessageDecoder:
@@ -37,9 +37,9 @@ class MessageDecoder:
         the data with the protocol.DataType enum and returning
         the decoded data.
         """
-        type_ = self._iobuffer.read_uint8()
+        edge_type = self._iobuffer.read_uint8()
 
-        match type_:
+        match edge_type:
 
             case protocol.DataType.NULL:
                 return None
@@ -139,15 +139,17 @@ class MessageDecoder:
                     node = self.decode()
                     return GraphPath(node, node, [])
                 path_segments = []
-                from_ = self.decode()
-                start = from_
+                source = self.decode()
+                start = source
                 for _ in range(path_length):
-                    reverse = self._iobuffer.read_uint8() == protocol.DataType.BOOL_TRUE
-                    type_ = self.decode()
-                    to = self.decode()
-                    path_segments.append(GraphPathSegment(from_, to, type_, reverse))
-                    from_ = to
-                end = from_
+                    direction: Direction = self._decode_string()
+                    edge_type = self.decode()
+                    target = self.decode()
+                    path_segments.append(
+                        GraphPathSegment(source, target, edge_type, direction)
+                    )
+                    source = target
+                end = source
                 return GraphPath(start, end, path_segments)
 
             case _:

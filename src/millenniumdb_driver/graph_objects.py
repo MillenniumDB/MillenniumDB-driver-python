@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Literal
 
 
 class GraphNode:
@@ -9,12 +9,12 @@ class GraphNode:
     :vartype id: str
     """
 
-    def __init__(self, id: str):
+    def __init__(self, id_: str):
         """
         attributes:
         id (str): The node identifier
         """
-        self.id = id
+        self.id = id_
 
     def __str__(self):
         return self.id
@@ -34,12 +34,12 @@ class GraphEdge:
     :vartype id: str
     """
 
-    def __init__(self, id: str):
+    def __init__(self, id_: str):
         """
         attributes:
         id (str): The edge identifier
         """
-        self.id = id
+        self.id = id_
 
     def __str__(self):
         return self.id
@@ -223,40 +223,46 @@ class DateTime:
         return f"DateTime<{str(self)}>"
 
 
+Direction = Literal["left", "right", "undirected"]
+
+
 class GraphPathSegment:
     """
     Represents a segment in the path.\n
 
-    Whether the segment is in reverse direction,
-    for example the segment should be printed
-    as:\n
-    `(to)<-[type]-(from)` instead of `(from)-[type]->(to)`
-
-    :ivar from_: The starting node of the segment.
-    :vartype from_: object
-    :ivar to: The ending node of the segment.
-    :vartype to: object
-    :ivar type: The type of the segment.
-    :vartype type: object
-    :ivar reverse: Whether the segment is in reverse direction.
-    :vartype reverse: bool
+    :ivar source: The starting node of the segment.
+    :vartype source: object
+    :ivar target: The ending node of the segment.
+    :vartype target: object
+    :ivar edge_type: The type of the segment.
+    :vartype edge_type: object
+    :ivar direction: The direction of the segment
+    :vartype direction: str
     """
 
-    def __init__(self, from_: object, to: object, type: object, reverse: bool) -> None:
+    def __init__(
+        self, source: object, target: object, edge_type: object, direction: Direction
+    ) -> None:
         """
         attributes:
-        from_ (object): The starting node of the segment
-        to (object): The ending node of the segment
-        type (object): The type of the segment
+        source (object): The starting node of the segment
+        target (object): The ending node of the segment
+        edge_type (object): The type of the segment
+        direction (Direction): The direction of the segment
         """
-        self.from_ = from_
-        self.to = to
-        self.type = type
+        self.source = source
+        self.target = target
+        self.edge_type = edge_type
+        self.direction = direction
 
-        # Whether the segment is in reverse direction,
-        # for example the segment should be printed
-        # as `(to)<-[type]-(from)` instead of `(from)-[type]->(to)`
-        self.reverse = reverse
+    def __repr__(self) -> str:
+        """
+        :return: A detailed representation of the GraphPath.
+        """
+        return (
+            f"GraphPathSegment<source={self.source}, target={self.target},"
+            f" edge_type={self.edge_type}, direction={self.direction}>"
+        )
 
 
 class GraphPath:
@@ -332,8 +338,8 @@ class StringLang:
     :vartype lang: str
     """
 
-    def __init__(self, str: str, lang: str):
-        self.str = str
+    def __init__(self, str_: str, lang: str):
+        self.str = str_
         self.lang = lang
 
     def __str__(self):
@@ -356,8 +362,8 @@ class StringDatatype:
     :vartype datatype: IRI
     """
 
-    def __init__(self, str: str, datatype: str):
-        self.str = str
+    def __init__(self, str_: str, datatype: str):
+        self.str = str_
         self.datatype = IRI(datatype)
 
     def __str__(self):

@@ -74,7 +74,7 @@ class Record:
         index = key if isinstance(key, int) else self._variableToIndex.get(key, -1)
         return index >= 0 and index < len(self._values)
 
-    def to_dict(self):
+    def to_dict(self) -> object:
         """
         :return: A dictionary representation of the record.
         """
