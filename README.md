@@ -1,5 +1,11 @@
+
 # MillenniumDB Driver
+
 ---
+
+[![PyPI Latest Release](https://img.shields.io/pypi/v/millenniumdb-driver.svg)](https://pypi.org/project/millenniumdb-driver/) [![PyPI downloads](https://img.shields.io/pypi/dm/millenniumdb-driver.svg?label=pypi%20downloads)](
+https://pypi.org/project/millenniumdb-driver/)
+![License](https://img.shields.io/pypi/l/millenniumdb-driver)
 
 Here you can find the official Python driver for the [MillenniumDB server](https://github.com/MillenniumDB/MillenniumDB).
 
