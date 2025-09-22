@@ -1,13 +1,17 @@
 from threading import Thread
 from time import sleep
-from typing import Dict, Iterator, List, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Tuple
 
 from .message_receiver import MessageReceiver
 from .millenniumdb_error import ResultError
 from .record import Record
-from .request_builder import RequestBuilder
+from .request_buffer import RequestBuffer
+from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
 from .socket_connection import SocketConnection
+
+if TYPE_CHECKING:
+    from pandas import DataFrame
 
 
 class Result:
@@ -19,9 +23,11 @@ class Result:
         self,
         driver: "Driver",
         connection: SocketConnection,
+        request_writer: RequestWriter,
         message_receiver: MessageReceiver,
         response_handler: ResponseHandler,
         query: str,
+        parameters: Dict[str, Any],
         timeout: float,
     ):
         self._driver = driver
@@ -33,9 +39,10 @@ class Result:
         self._summary = None
         self._exception = None
         self._streaming = True
+        self._request_writer = request_writer
         self._message_receiver = message_receiver
         self._response_handler = response_handler
-        self._run(query, timeout)
+        self._run(query, parameters, timeout)
 
     def variables(self) -> Tuple[str]:
         """
@@ -86,7 +93,7 @@ class Result:
         if self._streaming:
             self._driver.cancel(self)
 
-    def _run(self, query: str, timeout: float) -> None:
+    def _run(self, query: str, parameters: Dict[str, Any], timeout: float) -> None:
         def on_variables(variables, query_preamble) -> None:
             self._variables = variables
             self._query_preamble = query_preamble
@@ -111,7 +118,8 @@ class Result:
         self._response_handler.add_observer(
             {"on_success": on_success, "on_error": on_error}
         )
-        self._connection.sendall(RequestBuilder.run(query))
+        self._request_writer.write_run(query, parameters)
+        self._request_writer.flush()
 
         # on_variables
         message = self._message_receiver.receive()

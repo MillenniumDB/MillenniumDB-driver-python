@@ -1,3 +1,5 @@
+# TODO: REMOVE THIS MODULE
+
 from . import protocol
 from .iobuffer import IOBuffer
 
@@ -19,6 +21,7 @@ class RequestBuilder:
 
     @staticmethod
     def run(query: str) -> IOBuffer:
+        # TODO: https://neo4j.com/docs/bolt/current/bolt/message/#messages-run
         """
         Builds a request to execute a query.
 

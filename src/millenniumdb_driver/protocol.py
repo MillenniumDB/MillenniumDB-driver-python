@@ -6,6 +6,21 @@ SERVER_PREAMBLE_BYTES = b"MDB_SRVR"
 DEFAULT_CONNECTION_TIMEOUT = 20.0
 
 
+#  Packet format:
+#  [chunk_size][      chunk     ]
+#  [ 2 bytes  ][chunk_size bytes]
+#
+#  The seal that marks the end of a message is a "zero-sized chunk" [0x00 0x00]
+#
+#  Theoretically the maximum chunk size is 65'535 bytes, but our buffer size is 1400 for optimizing the MTU
+#  src: https://superuser.com/questions/343107/mtu-is-1500-why-the-first-fragment-length-is-1496-in-ipv6
+#
+#  We could write more than one chunk in the same buffer. It is expected that the Session and its handlers
+#  manage the flushing manually if this is not intended.
+BUFFER_SIZE = 1400
+CHUNK_HEADER_SIZE = 2
+
+
 class ModelId(IntEnum):
     QUAD_MODEL_ID = 0
     RDF_MODEL_ID = auto()
