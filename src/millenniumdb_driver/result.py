@@ -5,13 +5,14 @@ from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Tuple
 from .message_receiver import MessageReceiver
 from .millenniumdb_error import ResultError
 from .record import Record
-from .request_buffer import RequestBuffer
 from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
 from .socket_connection import SocketConnection
 
 if TYPE_CHECKING:
     from pandas import DataFrame
+
+    from .driver import Driver
 
 
 class Result:
@@ -44,6 +45,13 @@ class Result:
         self._response_handler = response_handler
         self._run(query, parameters, timeout)
 
+    @property
+    def query_preamble(self) -> Any | None:
+        """
+        :return: query preamble if any, None otherwise
+        """
+        return self._query_preamble
+
     def variables(self) -> Tuple[str]:
         """
         :return: The list of variables in the result.
@@ -72,7 +80,7 @@ class Result:
         """
         :return: The result as a pandas DataFrame.
         """
-        from pandas import DataFrame
+        from pandas import DataFrame  # pylint: disable=import-outside-toplevel
 
         return DataFrame(self.data())
 
@@ -131,4 +139,5 @@ class Result:
             Record(self._variables, raw_record, self._variable_to_index)
             for raw_record in raw_records
         ]
+        self._response_handler.handle(termination_message)
         self._response_handler.handle(termination_message)

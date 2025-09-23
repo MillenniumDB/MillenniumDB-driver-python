@@ -61,7 +61,6 @@ class RequestBuffer:
             self._close_chunk()
 
         if self._current_pos > 0:
-            print("SEND", self._buffer[: self._current_pos])
             self._connection.sendall(self._view[: self._current_pos])
             self._current_pos = 0
 

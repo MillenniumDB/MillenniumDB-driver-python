@@ -5,7 +5,6 @@ from .catalog import Catalog
 from .message_receiver import MessageReceiver
 from .millenniumdb_error import MillenniumDBError
 from .request_buffer import RequestBuffer
-from .request_builder import RequestBuilder
 from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
 from .result import Result
@@ -78,15 +77,12 @@ class Session:
         """
         Cancel a running query on the server.
         """
-        if result._query_preamble is None:
+        if result.query_preamble is None:
             raise MillenniumDBError("Session Error: query has not been executed yet")
 
-        # TODO: IMPLEMENT AGAIN
-        self._connection.sendall(
-            RequestBuilder.cancel(
-                result._query_preamble["workerIndex"],
-                result._query_preamble["cancellationToken"],
-            )
+        self._request_writer.write_cancel(
+            result.query_preamble["workerIndex"],
+            result.query_preamble["cancellationToken"],
         )
 
     def close(self):
