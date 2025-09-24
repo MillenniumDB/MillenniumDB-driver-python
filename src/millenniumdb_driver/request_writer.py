@@ -1,6 +1,7 @@
 import struct
 from typing import Any, Dict
 
+from .graph_objects import IRI
 from .millenniumdb_error import MillenniumDBError
 from .protocol import DataType, RequestType
 from .request_buffer import RequestBuffer
@@ -34,7 +35,6 @@ class RequestWriter:
         self._request_buffer.flush()
 
     def write_object(self, value: Any):
-        # TODO: support more values
         if value is None:
             self.write_null()
         elif isinstance(value, bool):
@@ -45,6 +45,8 @@ class RequestWriter:
             self.write_int64(value)
         elif isinstance(value, float):
             self.write_float(value)
+        elif isinstance(value, IRI):
+            self.write_iri(value.iri)
         else:
             raise MillenniumDBError(
                 f"RequestWriter Error: Unsupported type: {type(value)}"
@@ -63,17 +65,19 @@ class RequestWriter:
         self._request_buffer.write(value.to_bytes(4, byteorder="big"))
 
     def write_int64(self, value: int):
-        # TODO: IMPLEMENT CORRECTLY TO WORK WITH UNSIGNED
         self.write_byte(DataType.INT64)
-        self._request_buffer.write(value.to_bytes(8, byteorder="big", signed=True))
+        self._request_buffer.write(value.to_bytes(8, byteorder="big", signed=value < 0))
 
     def write_float(self, value: int):
-        # TODO: TEST
         self.write_byte(DataType.FLOAT)
         self._request_buffer.write(struct.pack(">f", value))
 
     def write_string(self, value: str):
         enc = self._encode_string(value, DataType.STRING)
+        self._request_buffer.write(enc)
+
+    def write_iri(self, value: str):
+        enc = self._encode_string(value, DataType.IRI)
         self._request_buffer.write(enc)
 
     def _write_parameters(self, parameters: Dict[str, Any]):
