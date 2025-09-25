@@ -86,6 +86,9 @@ class Catalog:
             case protocol.ModelId.RDF_MODEL_ID:
                 return "rdf"
 
+            case protocol.ModelId.GQL_MODEL_ID:
+                return "gql"
+
             case _:
                 return "unknown"
 

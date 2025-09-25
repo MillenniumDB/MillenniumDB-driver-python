@@ -84,11 +84,17 @@ class Result:
 
         return DataFrame(self.data())
 
-    def summary(self) -> object:
+    def summary(self) -> object | None:
         """
-        :return: The summary of the result.
+        :return: The summary of the result if any.
         """
         return self._summary
+
+    def error(self) -> Exception | None:
+        """
+        :return: The exception of the result if any.
+        """
+        return self._exception
 
     def __iter__(self) -> Iterator[Record]:
         """
@@ -117,8 +123,8 @@ class Result:
 
         def on_error(error) -> None:
             self._streaming = False
-            self._exception = error
-            raise ResultError(self) from self._exception
+            self._exception = ResultError(self, str(error))
+            raise self._exception
 
         self._response_handler.add_observer(
             {"on_variables": on_variables, "on_error": on_error}
@@ -139,5 +145,4 @@ class Result:
             Record(self._variables, raw_record, self._variable_to_index)
             for raw_record in raw_records
         ]
-        self._response_handler.handle(termination_message)
         self._response_handler.handle(termination_message)

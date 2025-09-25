@@ -23,17 +23,14 @@ class ResponseHandler:
         match message["type"]:
             case protocol.ResponseType.SUCCESS:
                 self._callback("on_success", message["payload"])
-                self._next_observer()
 
             case protocol.ResponseType.ERROR:
                 self._callback("on_error", MillenniumDBError(message["payload"]))
-                self._next_observer()
 
             case protocol.ResponseType.VARIABLES:
                 variables = message["payload"]["variables"]
                 query_preamble = message["payload"]["queryPreamble"]
                 self._callback("on_variables", variables, query_preamble)
-                self._next_observer()
 
             case _:
                 raise NotImplementedError
@@ -52,7 +49,7 @@ class ResponseHandler:
 
     def _callback(self, callback_key: str, *args, **kwargs) -> None:
         """
-        Call the observer with the given key and arguments.
+        Call the observer with the given key and arguments and advance to the next one.
 
         :param callback_key: The key of the observer to call.
         :type callback_key: str
@@ -61,13 +58,13 @@ class ResponseHandler:
             self._current_observer is not None
             and callback_key in self._current_observer
         ):
-            self._current_observer[callback_key](*args, **kwargs)
+            tmp_observer = self._current_observer
 
-    def _next_observer(self):
-        """
-        Move to the next observer in the queue.
-        """
-        if len(self._pending_observers) > 0:
-            self._current_observer = self._pending_observers.pop(0)
-        else:
-            self._current_observer = None
+            # advance current observer
+            if len(self._pending_observers) > 0:
+                self._current_observer = self._pending_observers.pop(0)
+            else:
+                self._current_observer = None
+
+            # handle callback
+            tmp_observer[callback_key](*args, **kwargs)

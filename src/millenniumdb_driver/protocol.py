@@ -24,6 +24,7 @@ CHUNK_HEADER_SIZE = 2
 class ModelId(IntEnum):
     QUAD_MODEL_ID = 0
     RDF_MODEL_ID = auto()
+    GQL_MODEL_ID = auto()
 
     TOTAL = auto()
 

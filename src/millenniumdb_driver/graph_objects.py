@@ -31,18 +31,18 @@ class GraphEdge:
     Represents an edge in the graph.
 
     :ivar id: The edge identifier.
-    :vartype id: str
+    :vartype id: int
     """
 
-    def __init__(self, id_: str):
+    def __init__(self, id_: int):
         """
         attributes:
-        id (str): The edge identifier
+        id (int): The edge identifier
         """
         self.id = id_
 
     def __str__(self):
-        return self.id
+        return f"_e{self.id}"
 
     def __repr__(self) -> str:
         """
@@ -56,18 +56,18 @@ class GraphAnon:
     Represents an anonymous node in the graph.
 
     :ivar id: The anonymous node identifier.
-    :vartype id: str
+    :vartype id: int
     """
 
-    def __init__(self, id: str):
+    def __init__(self, id_: int):
         """
         attributes:
-        id (str): The anonymous node identifier
+        id (int): The anonymous node identifier
         """
-        self.id = id
+        self.id = id_
 
     def __str__(self):
-        return self.id
+        return f"_a{self.id}"
 
     def __repr__(self) -> str:
         """
