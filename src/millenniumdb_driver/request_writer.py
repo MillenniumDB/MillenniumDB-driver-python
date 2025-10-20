@@ -98,11 +98,11 @@ class RequestWriter:
 
     def write_edge(self, value: int):
         self.write_byte(DataType.EDGE)
-        self._request_buffer.write(value.to_bytes(8, byteorder="big", signed=value < 0))
+        self._request_buffer.write(value.to_bytes(8, byteorder="big"))
 
     def write_anon(self, value: int):
         self.write_byte(DataType.ANON)
-        self._request_buffer.write(value.to_bytes(8, byteorder="big", signed=value < 0))
+        self._request_buffer.write(value.to_bytes(8, byteorder="big"))
 
     def write_string(self, value: str):
         enc = self._encode_typed_string(value, DataType.STRING)
@@ -129,12 +129,7 @@ class RequestWriter:
             if not isinstance(key, str):
                 raise MillenniumDBError("Non-string key found at query parameters")
             self.write_string(key)
-            try:
-                self.write_object(value)
-            except MillenniumDBError as e:
-                raise MillenniumDBError(
-                    "Unsupported value found at query parameters"
-                ) from e
+            self.write_object(value)
 
     def _encode_typed_string(self, value: str, datatype: DataType) -> bytes:
         value_bytes = value.encode("utf-8")
