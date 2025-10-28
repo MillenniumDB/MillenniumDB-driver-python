@@ -1,9 +1,13 @@
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .result import Result
+
+
 class MillenniumDBError(Exception):
     """
     This class represents an error that has been thrown by the driver
     """
-
-    pass
 
 
 class ResultError(MillenniumDBError):

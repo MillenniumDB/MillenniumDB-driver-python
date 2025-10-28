@@ -1,7 +1,6 @@
 from . import protocol
 from .message_receiver import MessageReceiver
-from .millenniumdb_error import MillenniumDBError
-from .request_builder import RequestBuilder
+from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
 from .socket_connection import SocketConnection
 
@@ -14,6 +13,7 @@ class Catalog:
     def __init__(
         self,
         connection: SocketConnection,
+        request_writer: RequestWriter,
         message_receiver: MessageReceiver,
         response_handler: ResponseHandler,
     ):
@@ -26,6 +26,7 @@ class Catalog:
         :type response_handler: ResponseHandler
         """
         self._connection = connection
+        self._request_writer = request_writer
         self._message_receiver = message_receiver
         self._response_handler = response_handler
         self._model_id = None
@@ -71,7 +72,8 @@ class Catalog:
         self._response_handler.add_observer(
             {"on_success": on_success, "on_error": on_error}
         )
-        self._connection.sendall(RequestBuilder.catalog())
+        self._request_writer.write_catalog()
+        self._request_writer.flush()
 
         message = self._message_receiver.receive()
         self._response_handler.handle(message)
@@ -83,6 +85,9 @@ class Catalog:
 
             case protocol.ModelId.RDF_MODEL_ID:
                 return "rdf"
+
+            case protocol.ModelId.GQL_MODEL_ID:
+                return "gql"
 
             case _:
                 return "unknown"

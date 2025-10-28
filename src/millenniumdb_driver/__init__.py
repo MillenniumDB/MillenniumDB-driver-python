@@ -1,5 +1,6 @@
 import importlib.metadata
 
+from . import graph_objects
 from .driver import Driver as _Driver
 from .millenniumdb_error import MillenniumDBError, ResultError
 

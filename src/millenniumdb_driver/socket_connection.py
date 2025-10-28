@@ -1,4 +1,5 @@
 import socket
+from typing import ByteString
 
 from . import protocol
 from .iobuffer import IOBuffer
@@ -22,11 +23,14 @@ class SocketConnection:
         self._socket = self._create_socket(host, port)
         self._handshake()
 
-    def sendall(self, iobuffer: IOBuffer) -> None:
+    def sendall(self, data: IOBuffer | ByteString) -> None:
         """
         Send the data to the server.
         """
-        self._socket.sendall(iobuffer.view[: iobuffer.num_used_bytes])
+        if isinstance(data, IOBuffer):
+            self._socket.sendall(data.view[: data.num_used_bytes])
+        else:
+            self._socket.sendall(data)
 
     def recvall_into(self, iobuffer: IOBuffer, num_bytes: int) -> None:
         """

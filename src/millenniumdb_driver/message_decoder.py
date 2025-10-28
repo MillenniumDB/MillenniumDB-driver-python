@@ -100,11 +100,11 @@ class MessageDecoder:
                 return GraphNode(node_id)
 
             case protocol.DataType.EDGE:
-                edge_id = self._decode_string()
+                edge_id = self._iobuffer.read_int64()
                 return GraphEdge(edge_id)
 
             case protocol.DataType.ANON:
-                anon_id = self._decode_string()
+                anon_id = self._iobuffer.read_int64()
                 return GraphAnon(anon_id)
 
             case protocol.DataType.DATE:

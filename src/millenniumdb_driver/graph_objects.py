@@ -31,18 +31,18 @@ class GraphEdge:
     Represents an edge in the graph.
 
     :ivar id: The edge identifier.
-    :vartype id: str
+    :vartype id: int
     """
 
-    def __init__(self, id_: str):
+    def __init__(self, id_: int):
         """
         attributes:
-        id (str): The edge identifier
+        id (int): The edge identifier
         """
         self.id = id_
 
     def __str__(self):
-        return self.id
+        return f"_e{self.id}"
 
     def __repr__(self) -> str:
         """
@@ -56,18 +56,18 @@ class GraphAnon:
     Represents an anonymous node in the graph.
 
     :ivar id: The anonymous node identifier.
-    :vartype id: str
+    :vartype id: int
     """
 
-    def __init__(self, id: str):
+    def __init__(self, id_: int):
         """
         attributes:
-        id (str): The anonymous node identifier
+        id (int): The anonymous node identifier
         """
-        self.id = id
+        self.id = id_
 
     def __str__(self):
-        return self.id
+        return f"_a{self.id}"
 
     def __repr__(self) -> str:
         """
@@ -86,29 +86,29 @@ class SimpleDate:
     :vartype month: int
     :ivar day: The day of the date.
     :vartype day: int
-    :ivar tzMinuteOffset: The timezone offset in minutes.
-    :vartype tzMinuteOffset: int
+    :ivar tz_minute_offset: The timezone offset in minutes.
+    :vartype tz_minute_offset: int
     """
 
-    def __init__(self, year: int, month: int, day: int, tzMinuteOffset: int):
+    def __init__(self, year: int, month: int, day: int, tz_minute_offset: int):
         self.year = year
         self.month = month
         self.day = day
-        self.tzMinuteOffset = tzMinuteOffset
+        self.tz_minute_offset = tz_minute_offset
 
     def __str__(self):
         year = str(self.year)
         month = str(self.month).zfill(2)
         day = str(self.day).zfill(2)
         res = f"{year}-{month}-{day}"
-        if self.tzMinuteOffset == 0:
+        if self.tz_minute_offset == 0:
             res += "Z"
         else:
-            tzHour = self.tzMinuteOffset // 60
-            tzMin = self.tzMinuteOffset % 60
-            res += "-" if self.tzMinuteOffset < 0 else "+"
-            res += str(abs(tzHour)).zfill(2) + ":"
-            res += str(abs(tzMin)).zfill(2)
+            tz_hour = self.tz_minute_offset // 60
+            tz_min = self.tz_minute_offset % 60
+            res += "-" if self.tz_minute_offset < 0 else "+"
+            res += str(abs(tz_hour)).zfill(2) + ":"
+            res += str(abs(tz_min)).zfill(2)
         return res
 
     def __repr__(self) -> str:
@@ -128,29 +128,29 @@ class Time:
     :vartype minute: int
     :ivar second: The second of the time.
     :vartype second: int
-    :ivar tzMinuteOffset: The timezone offset in minutes.
-    :vartype tzMinuteOffset: int
+    :ivar tz_minute_offset: The timezone offset in minutes.
+    :vartype tz_minute_offset: int
     """
 
-    def __init__(self, hour: int, minute: int, second: int, tzMinuteOffset: int):
+    def __init__(self, hour: int, minute: int, second: int, tz_minute_offset: int):
         self.hour = hour
         self.minute = minute
         self.second = second
-        self.tzMinuteOffset = tzMinuteOffset
+        self.tz_minute_offset = tz_minute_offset
 
     def __str__(self):
         hour = str(self.hour).zfill(2)
         minute = str(self.minute).zfill(2)
         second = str(self.second).zfill(2)
         res = f"{hour}:{minute}:{second}"
-        if self.tzMinuteOffset == 0:
+        if self.tz_minute_offset == 0:
             res += "Z"
         else:
-            tzHour = self.tzMinuteOffset // 60
-            tzMin = self.tzMinuteOffset % 60
-            res += "-" if self.tzMinuteOffset < 0 else "+"
-            res += str(abs(tzHour)).zfill(2) + ":"
-            res += str(abs(tzMin)).zfill(2)
+            tz_hour = self.tz_minute_offset // 60
+            tz_min = self.tz_minute_offset % 60
+            res += "-" if self.tz_minute_offset < 0 else "+"
+            res += str(abs(tz_hour)).zfill(2) + ":"
+            res += str(abs(tz_min)).zfill(2)
         return res
 
     def __repr__(self) -> str:
@@ -176,8 +176,8 @@ class DateTime:
     :vartype minute: int
     :ivar second: The second of the datetime.
     :vartype second: int
-    :ivar tzMinuteOffset: The timezone offset in minutes.
-    :vartype tzMinuteOffset: int
+    :ivar tz_minute_offset: The timezone offset in minutes.
+    :vartype tz_minute_offset: int
     """
 
     def __init__(
@@ -188,7 +188,7 @@ class DateTime:
         hour: int,
         minute: int,
         second: int,
-        tzMinuteOffset: int,
+        tz_minute_offset: int,
     ):
         self.year = year
         self.month = month
@@ -196,7 +196,7 @@ class DateTime:
         self.hour = hour
         self.minute = minute
         self.second = second
-        self.tzMinuteOffset = tzMinuteOffset
+        self.tz_minute_offset = tz_minute_offset
 
     def __str__(self) -> str:
         year = str(self.year)
@@ -206,12 +206,12 @@ class DateTime:
         minute = str(self.minute).zfill(2)
         second = str(self.second).zfill(2)
         res = f"{year}-{month}-{day}T{hour}:{minute}:{second}"
-        if self.tzMinuteOffset == 0:
+        if self.tz_minute_offset == 0:
             res += "Z"
         else:
-            tzHour = self.tzMinuteOffset // 60
-            tzMin = self.tzMinuteOffset % 60
-            res += "-" if self.tzMinuteOffset < 0 else "+"
+            tzHour = self.tz_minute_offset // 60
+            tzMin = self.tz_minute_offset % 60
+            res += "-" if self.tz_minute_offset < 0 else "+"
             res += str(abs(tzHour)).zfill(2) + ":"
             res += str(abs(tzMin)).zfill(2)
         return res

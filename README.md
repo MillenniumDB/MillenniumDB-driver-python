@@ -131,3 +131,24 @@ for record in result: -> Iterator[Record]
 ```
 
 Iterates over each record in result.
+
+### Parametric queries
+
+To prevent injections, `session.run()` accepts a second argument: a dictionary that maps variables to values. This lets you create safe, parametric queries with preset bindings that are automatically sanitized by the database.
+
+```python
+result = session.run(
+    "MATCH (?person :Person)-[:owns]->(?car :Car) WHERE ?person.age > ?my_arg RETURN *",
+    { "my_arg": 25 },
+)
+```
+
+MillenniumDB types can be constructed from python to pass it as parametric values. This are available under `millenniumdb_driver.graph_objects` module. For example:
+
+```python
+import millenniumdb_driver as mdb
+
+my_iri = mdb.graph_objects.IRI("http://example.com")
+
+# now you can use this IRI as a value
+```
