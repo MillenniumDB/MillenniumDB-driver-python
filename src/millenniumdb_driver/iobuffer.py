@@ -1,5 +1,7 @@
 import struct
 
+from .millenniumdb_error import MillenniumDBError
+
 
 class IOBuffer:
     """
@@ -142,6 +144,12 @@ class IOBuffer:
         return res
 
     def _update_current_read_position(self, num_bytes: int) -> int:
+        if self._current_read_position + num_bytes > len(self):
+            raise MillenniumDBError(
+                "IOBuffer Error: Attempted to perform an operation past the end of the"
+                " buffer"
+            )
+
         previous_read_position = self._current_read_position
         self._current_read_position += num_bytes
         return previous_read_position

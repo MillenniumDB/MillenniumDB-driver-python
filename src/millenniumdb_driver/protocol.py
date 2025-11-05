@@ -54,6 +54,7 @@ class DataType(IntEnum):
     PATH = auto()
     LIST = auto()
     MAP = auto()
+    TENSOR = auto()
 
     TOTAL = auto()
 
