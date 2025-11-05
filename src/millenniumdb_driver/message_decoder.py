@@ -1,5 +1,7 @@
 from decimal import Decimal
-from typing import Dict, List
+from typing import Callable, Dict, List
+
+import numpy as np
 
 from . import protocol
 from .graph_objects import (
@@ -17,6 +19,7 @@ from .graph_objects import (
     Time,
 )
 from .iobuffer import IOBuffer
+from .millenniumdb_error import MillenniumDBError
 
 
 class MessageDecoder:
@@ -37,9 +40,9 @@ class MessageDecoder:
         the data with the protocol.DataType enum and returning
         the decoded data.
         """
-        edge_type = self._iobuffer.read_uint8()
+        datatype = self._iobuffer.read_uint8()
 
-        match edge_type:
+        match datatype:
 
             case protocol.DataType.NULL:
                 return None
@@ -151,6 +154,27 @@ class MessageDecoder:
                     source = target
                 end = source
                 return GraphPath(start, end, path_segments)
+
+            case protocol.DataType.TENSOR:
+                tensor_datatype = self._iobuffer.read_uint8()
+                tensor_dtype: np.dtype[np.float32] | np.dtype[np.float64]
+                read_value_fn: Callable[[], float]
+                if tensor_datatype == protocol.DataType.FLOAT:
+                    tensor_dtype = np.float32
+                    read_value_fn = self._iobuffer.read_float
+                elif tensor_datatype == protocol.DataType.DOUBLE:
+                    tensor_dtype = np.float64
+                    read_value_fn = self._iobuffer.read_double
+                else:
+                    raise MillenniumDBError(
+                        "MessageDecoder Error: Invalid tensor datatype received: "
+                        + tensor_datatype
+                    )
+                size = self._iobuffer.read_uint32()
+                tensor = np.empty(size, dtype=tensor_dtype)
+                for i in range(size):
+                    tensor[i] = read_value_fn()
+                return tensor
 
             case _:
                 raise NotImplementedError

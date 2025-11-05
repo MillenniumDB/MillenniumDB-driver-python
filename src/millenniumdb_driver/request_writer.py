@@ -1,6 +1,9 @@
 import struct
 from typing import Any, Dict
 
+import numpy as np
+from numpy.typing import NDArray
+
 from .graph_objects import (
     IRI,
     GraphAnon,
@@ -55,6 +58,20 @@ class RequestWriter:
             self.write_float(value)
         elif isinstance(value, GraphAnon):
             self.write_anon(value.id)
+        elif isinstance(value, np.ndarray):
+            if value.ndim != 1:
+                raise MillenniumDBError(
+                    "RequestWriter Error: Tensors must have exactly one dimension"
+                )
+
+            if value.dtype == np.float32:
+                self.write_tensor(value, DataType.FLOAT)
+            elif value.dtype == np.float64:
+                self.write_tensor(value, DataType.DOUBLE)
+            else:
+                raise MillenniumDBError(
+                    f"RequestWriter Error: Unsupported tensor dtype: {value.dtype}"
+                )
         # MQL
         elif isinstance(value, GraphNode):
             self.write_named_node(value.id)
@@ -120,6 +137,18 @@ class RequestWriter:
     def write_string_datatype(self, value: StringDatatype):
         enc = self._encode_typed_string(value.str, DataType.STRING_DATATYPE)
         enc += self._encode_bytes(value.datatype.iri.encode("utf-8"))
+        self._request_buffer.write(enc)
+
+    def write_tensor(
+        self,
+        value: NDArray[np.float32] | NDArray[np.float64],
+        tensor_datatype: DataType,
+    ):
+        # write contiguos array of floating points in big endian
+        self.write_byte(DataType.TENSOR)
+        self.write_byte(tensor_datatype)
+        enc = self._encode_size(value.size)
+        enc += value.astype(value.dtype.newbyteorder(">")).tobytes()
         self._request_buffer.write(enc)
 
     def _write_parameters(self, parameters: Dict[str, Any]):
