@@ -60,7 +60,7 @@ First you must create a `Driver` instance:
 ```python
 import millenniumdb_driver
 
-url = 'URL for the MillenniumDB server'
+url = 'tcp://<your-server-url>:<port>'
 driver = millenniumdb_driver.driver(url)
 ```
 

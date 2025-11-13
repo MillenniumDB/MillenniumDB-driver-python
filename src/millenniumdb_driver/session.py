@@ -30,10 +30,10 @@ class Session:
     The class represents a session with the MillenniumDB server.
     """
 
-    def __init__(self, host: str, port: int, driver: "Driver"):
+    def __init__(self, host: str, port: int, scheme: str, driver: "Driver"):
         self._driver = driver
         self._open = True
-        self._connection = SocketConnection(host, port)
+        self._connection = SocketConnection(host, port, scheme)
         self._message_receiver = MessageReceiver(self._connection)
         self._request_buffer = RequestBuffer(self._connection)
         self._request_writer = RequestWriter(self._request_buffer)

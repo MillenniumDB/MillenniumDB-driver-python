@@ -33,6 +33,7 @@ class Driver:
         self._open = True
         self._host = parsed_url.hostname
         self._port = parsed_url.port
+        self._scheme = parsed_url.scheme
         self._sessions = []
 
     @_ensure_driver_open
@@ -59,7 +60,7 @@ class Driver:
         """
         :return: A new session instance.
         """
-        session = Session(self._host, self._port, self)
+        session = Session(self._host, self._port, self._scheme, self)
         self._sessions.append(session)
         return session
 

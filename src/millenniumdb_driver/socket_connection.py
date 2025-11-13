@@ -1,4 +1,5 @@
 import socket
+import warnings
 from typing import ByteString
 
 from . import protocol
@@ -11,16 +12,12 @@ class SocketConnection:
     Represents the socket connection to the server.
     """
 
-    def __init__(
-        self,
-        host: str,
-        port: int,
-    ):
+    def __init__(self, host: str, port: int, scheme: str):
         """
         Create a socket connection with the host and port.
         """
         self._connection_timeout = protocol.DEFAULT_CONNECTION_TIMEOUT
-        self._socket = self._create_socket(host, port)
+        self._socket = self._create_socket(host, port, scheme)
         self._handshake()
 
     def sendall(self, data: IOBuffer | ByteString) -> None:
@@ -73,11 +70,28 @@ class SocketConnection:
         if response != protocol.SERVER_PREAMBLE_BYTES:
             raise MillenniumDBError("SocketConnection Error: handshake failed")
 
-    def _create_socket(self, host: str, port: int) -> socket.socket:
+    def _create_socket(self, host: str, port: int, scheme: str) -> socket.socket:
         try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(self._connection_timeout)
-            sock.connect((host, port))
+            if port is None:
+                raise MillenniumDBError("URL does not provide a port")
+
+            allowed_schemes = ("tcp", "ssl", "tls")
+            if scheme not in allowed_schemes:
+                raise MillenniumDBError(
+                    f"Invalid URL scheme: {scheme}. Scheme must be one of the"
+                    f" following: {allowed_schemes}"
+                )
+
+            if scheme != "tcp":
+                warnings.warn(
+                    "SSL/TLS is not supported yet. Raw TCP connection will be"
+                    " stablished",
+                    category=UserWarning,
+                )
+
+            sock = socket.create_connection(
+                (host, port), timeout=self._connection_timeout
+            )
             sock.settimeout(None)
             return sock
         except socket.timeout as e:
