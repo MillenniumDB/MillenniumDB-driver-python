@@ -2,7 +2,7 @@ from . import protocol
 from .message_receiver import MessageReceiver
 from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
-from .socket_connection import SocketConnection
+from .websocket_connection import WebSocketConnection
 
 
 class Catalog:
@@ -12,14 +12,14 @@ class Catalog:
 
     def __init__(
         self,
-        connection: SocketConnection,
+        connection: WebSocketConnection,
         request_writer: RequestWriter,
         message_receiver: MessageReceiver,
         response_handler: ResponseHandler,
     ):
         """
         :param connection: The socket connection.
-        :type connection: SocketConnection
+        :type connection: WebSocketConnection
         :param message_receiver: The receiver of incoming messages.
         :type message_receiver: MessageReceiver
         :param response_handler: The handler of the responses.

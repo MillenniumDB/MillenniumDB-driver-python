@@ -1,7 +1,7 @@
 from typing import ByteString
 
 from .protocol import BUFFER_SIZE, CHUNK_HEADER_SIZE
-from .socket_connection import SocketConnection
+from .websocket_connection import WebSocketConnection
 
 # Packet format:
 #     [chunk_size][      chunk     ]
@@ -12,7 +12,7 @@ from .socket_connection import SocketConnection
 
 class RequestBuffer:
 
-    def __init__(self, connection: SocketConnection):
+    def __init__(self, connection: WebSocketConnection):
         self._connection = connection
         self._current_pos = 0
         self._chunk_open = False
@@ -61,7 +61,7 @@ class RequestBuffer:
             self._close_chunk()
 
         if self._current_pos > 0:
-            self._connection.sendall(self._view[: self._current_pos])
+            self._connection.write(self._view[: self._current_pos])
             self._current_pos = 0
 
     def _open_chunk(self) -> None:
