@@ -8,7 +8,7 @@ from .request_buffer import RequestBuffer
 from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
 from .result import Result
-from .socket_connection import SocketConnection
+from .websocket_connection import WebSocketConnection
 
 
 def _ensure_session_open(func):
@@ -30,10 +30,10 @@ class Session:
     The class represents a session with the MillenniumDB server.
     """
 
-    def __init__(self, host: str, port: int, scheme: str, driver: "Driver"):
+    def __init__(self, url: str, driver: "Driver"):
         self._driver = driver
         self._open = True
-        self._connection = SocketConnection(host, port, scheme)
+        self._connection = WebSocketConnection(url)
         self._message_receiver = MessageReceiver(self._connection)
         self._request_buffer = RequestBuffer(self._connection)
         self._request_writer = RequestWriter(self._request_buffer)

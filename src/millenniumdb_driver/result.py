@@ -7,7 +7,7 @@ from .millenniumdb_error import ResultError
 from .record import Record
 from .request_writer import RequestWriter
 from .response_handler import ResponseHandler
-from .socket_connection import SocketConnection
+from .websocket_connection import WebSocketConnection
 
 if TYPE_CHECKING:
     from pandas import DataFrame
@@ -23,7 +23,7 @@ class Result:
     def __init__(
         self,
         driver: "Driver",
-        connection: SocketConnection,
+        connection: WebSocketConnection,
         request_writer: RequestWriter,
         message_receiver: MessageReceiver,
         response_handler: ResponseHandler,

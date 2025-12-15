@@ -4,7 +4,7 @@ from . import protocol
 from .chunk_decoder import ChunkDecoder
 from .iobuffer import IOBuffer
 from .message_decoder import MessageDecoder
-from .socket_connection import SocketConnection
+from .websocket_connection import WebSocketConnection
 
 
 class MessageReceiver:
@@ -14,10 +14,10 @@ class MessageReceiver:
 
     SEAL = 0x00_00
 
-    def __init__(self, connection: SocketConnection):
+    def __init__(self, connection: WebSocketConnection):
         """
         :param connection: The socket connection.
-        :type connection: SocketConnection
+        :type connection: WebSocketConnection
         """
         self._receiver_buffer = IOBuffer()
         self._chunk_decoder = ChunkDecoder(connection, self._receiver_buffer)

@@ -1,6 +1,6 @@
 from .iobuffer import IOBuffer
 from .millenniumdb_error import MillenniumDBError
-from .socket_connection import SocketConnection
+from .websocket_connection import WebSocketConnection
 
 
 class ChunkDecoder:
@@ -10,10 +10,10 @@ class ChunkDecoder:
 
     SEAL = 0x00_00
 
-    def __init__(self, connection: SocketConnection, iobuffer: IOBuffer):
+    def __init__(self, connection: WebSocketConnection, iobuffer: IOBuffer):
         """
         :param connection: The socket connection.
-        :type connection: SocketConnection
+        :type connection: WebSocketConnection
         :param iobuffer: The IOBuffer.
         :type iobuffer: IOBuffer
         """

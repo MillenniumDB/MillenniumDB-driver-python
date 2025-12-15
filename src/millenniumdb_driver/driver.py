@@ -1,5 +1,4 @@
 from functools import wraps
-from urllib.parse import urlparse
 
 from .catalog import Catalog
 from .millenniumdb_error import MillenniumDBError
@@ -29,11 +28,8 @@ class Driver:
         :param url: The URL of the MillenniumDB server.
         :type url: str
         """
-        parsed_url = urlparse(url)
         self._open = True
-        self._host = parsed_url.hostname
-        self._port = parsed_url.port
-        self._scheme = parsed_url.scheme
+        self._url = url
         self._sessions = []
 
     @_ensure_driver_open
@@ -60,7 +56,7 @@ class Driver:
         """
         :return: A new session instance.
         """
-        session = Session(self._host, self._port, self._scheme, self)
+        session = Session(self._url, self)
         self._sessions.append(session)
         return session
 
