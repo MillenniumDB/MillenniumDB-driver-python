@@ -49,15 +49,15 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#message-receiver-module">Message Receiver Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.chunk_decoder">Chunk Decoder Module</a></li>
+<li><a class="reference internal" href="#chunk-decoder-module">Chunk Decoder Module</a></li>
 <li><a class="reference internal" href="#message-decoder-module">Message Decoder Module</a></li>
 <li><a class="reference internal" href="#record-module">Record Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.iobuffer">Iobuffer Module</a></li>
 <li><a class="reference internal" href="#module-millenniumdb_driver.graph_objects">Graph Objects Module</a></li>
 <li><a class="reference internal" href="#catalog-module">Catalog Module</a></li>
 <li><a class="reference internal" href="#driver-module">Driver Module</a></li>
-<li><a class="reference internal" href="#module-millenniumdb_driver.socket_connection">Socket Connection Module</a></li>
 <li><a class="reference internal" href="#session-module">Session Module</a></li>
+<li><a class="reference internal" href="#websocket-connection-module">Websocket Connection Module</a></li>
 <li><a class="reference internal" href="#request-writer-module">Request Writer Module</a></li>
 <li><a class="reference internal" href="#request-buffer-module">Request Buffer Module</a></li>
 <li><a class="reference internal" href="#result-module">Result Module</a></li>
@@ -166,39 +166,8 @@
 <section id="message-receiver-module">
 <h1>Message Receiver Module<a class="headerlink" href="#message-receiver-module" title="Permalink to this heading"></a></h1>
 </section>
-<section id="module-millenniumdb_driver.chunk_decoder">
-<span id="chunk-decoder-module"></span><h1>Chunk Decoder Module<a class="headerlink" href="#module-millenniumdb_driver.chunk_decoder" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.chunk_decoder.</span></span><span class="sig-name descname"><span class="pre">ChunkDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Decode the incoming chunks from the server.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.SEAL">
-<span class="sig-name descname"><span class="pre">SEAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.SEAL" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><span class="pre">SocketConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.__init__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>connection</strong> (<a class="reference internal" href="#millenniumdb_driver.socket_connection.SocketConnection" title="millenniumdb_driver.socket_connection.SocketConnection"><em>SocketConnection</em></a>) – The socket connection.</p></li>
-<li><p><strong>iobuffer</strong> (<a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><em>IOBuffer</em></a>) – The IOBuffer.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.chunk_decoder.ChunkDecoder.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.chunk_decoder.ChunkDecoder.decode" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize the decoding loop until the SEAL is received.</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="chunk-decoder-module">
+<h1>Chunk Decoder Module<a class="headerlink" href="#chunk-decoder-module" title="Permalink to this heading"></a></h1>
 </section>
 <section id="message-decoder-module">
 <h1>Message Decoder Module<a class="headerlink" href="#message-decoder-module" title="Permalink to this heading"></a></h1>
@@ -738,42 +707,11 @@ direction (Direction): The direction of the segment</p>
 <section id="driver-module">
 <h1>Driver Module<a class="headerlink" href="#driver-module" title="Permalink to this heading"></a></h1>
 </section>
-<section id="module-millenniumdb_driver.socket_connection">
-<span id="socket-connection-module"></span><h1>Socket Connection Module<a class="headerlink" href="#module-millenniumdb_driver.socket_connection" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="millenniumdb_driver.socket_connection.SocketConnection">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">millenniumdb_driver.socket_connection.</span></span><span class="sig-name descname"><span class="pre">SocketConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheme</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.socket_connection.SocketConnection" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Represents the socket connection to the server.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.socket_connection.SocketConnection.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheme</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#millenniumdb_driver.socket_connection.SocketConnection.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Create a socket connection with the host and port.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.socket_connection.SocketConnection.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.socket_connection.SocketConnection.close" title="Permalink to this definition"></a></dt>
-<dd><p>Close the socket connection.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.socket_connection.SocketConnection.recvall_into">
-<span class="sig-name descname"><span class="pre">recvall_into</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iobuffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.socket_connection.SocketConnection.recvall_into" title="Permalink to this definition"></a></dt>
-<dd><p>Receive the data from the server.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="millenniumdb_driver.socket_connection.SocketConnection.sendall">
-<span class="sig-name descname"><span class="pre">sendall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.14)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#millenniumdb_driver.iobuffer.IOBuffer" title="millenniumdb_driver.iobuffer.IOBuffer"><span class="pre">IOBuffer</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ByteString" title="(in Python v3.14)"><span class="pre">ByteString</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#millenniumdb_driver.socket_connection.SocketConnection.sendall" title="Permalink to this definition"></a></dt>
-<dd><p>Send the data to the server.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="session-module">
 <h1>Session Module<a class="headerlink" href="#session-module" title="Permalink to this heading"></a></h1>
+</section>
+<section id="websocket-connection-module">
+<h1>Websocket Connection Module<a class="headerlink" href="#websocket-connection-module" title="Permalink to this heading"></a></h1>
 </section>
 <section id="request-writer-module">
 <h1>Request Writer Module<a class="headerlink" href="#request-writer-module" title="Permalink to this heading"></a></h1>
