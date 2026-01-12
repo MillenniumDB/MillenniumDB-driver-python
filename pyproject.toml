@@ -1,6 +1,6 @@
 [project]
 name = "millenniumdb_driver"
-version = "1.2.0"
+version = "1.2.1"
 authors = [
     { name = "Vicente Calisto", email = "vecalisto@uc.cl" },
     { name = "Matías Maldonado", email = "matiasmaldonado@uc.cl" },

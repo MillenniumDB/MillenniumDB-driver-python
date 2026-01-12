@@ -99,6 +99,7 @@ class RequestWriter:
         self._request_buffer.write(value.to_bytes(1))
 
     def write_uint32(self, value: int):
+        self.write_byte(DataType.UINT32)
         self._request_buffer.write(value.to_bytes(4, byteorder="big"))
 
     def write_int64(self, value: int):

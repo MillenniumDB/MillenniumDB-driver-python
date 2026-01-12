@@ -84,6 +84,7 @@ class Session:
             result.query_preamble["workerIndex"],
             result.query_preamble["cancellationToken"],
         )
+        self._request_writer.flush()
 
     def close(self):
         """
